@@ -1,0 +1,22 @@
+---
+platform: "WINDOWS"
+env: "https://api-at-qa.ziosuite.com/v2"
+localTesting: "localTesting"
+buildId: "Local"
+auth: false
+authUser: "ia@irhythmtech.com"
+authPsw: "tB8589@c5C3y24b%"
+sendEmail: false
+emailFrom: "sqa345@gmail.com"
+emailPsw: "irhythmP@ssword3"
+emailTo:
+  - "qa@cbqasolutions.com"
+type: "functional"
+webServiceVersion: "2.2.2-4669"
+databaseHost: "irhythmdb-atqa57.cteyypytfuq0.us-east-1.rds.amazonaws.com"
+splunkHost: "breadlegs.irhythmtech.org"
+splunkTimeout: 1
+inventoryHost: "https://inventoryws-at-qa.zioreports.com/v1/locations/"
+jamaHost: "https://jama.irhythmtech.org/rest/latest"
+htmlReportFileName: "ZioSuite_Web_Service_2.3_Release_Test_Automation_Report"
+versions: "ALL"
