@@ -1,0 +1,11 @@
+VAR NAME:VALUE
+200_StatusCode;HTTP/1.1 200
+201_StatusCode;HTTP/1.1 201
+202_StatusCode;HTTP/1.1 202
+400_StatusCode;HTTP/1.1 400
+401_StatusCode;HTTP/1.1 401
+403_StatusCode;HTTP/1.1 403
+406_StatusCode;HTTP/1.1 406
+422_StatusCode;HTTP/1.1 422
+409_StatusCode;HTTP/1.1 409
+500_StatusCode;HTTP/1.1 500
