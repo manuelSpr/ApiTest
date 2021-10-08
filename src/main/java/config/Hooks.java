@@ -129,11 +129,11 @@ public class Hooks {
             emailReporting.SendEmailReport(config);
         }*/
         if(config.getType().equals("functional")) {
-            LocalReportingFunctional localFunctional = new LocalReportingFunctional();
-            localFunctional.saveReport(config);
+            //LocalReportingFunctional localFunctional = new LocalReportingFunctional();
+            //localFunctional.saveReport(config);
         }else {
-            LocalReportingValidation localValidation = new LocalReportingValidation();
-            localValidation.saveReport(config);
+            //LocalReportingValidation localValidation = new LocalReportingValidation();
+            //localValidation.saveReport(config);
         }
         CleanWebServiceVersionIntoYaml(CONFIGURATION_YAML);
         Reporter.log("Finishing suite hooks", true);

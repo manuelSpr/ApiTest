@@ -1,6 +1,6 @@
 package support;
 
-import objects.Configuration;
+import support.Configuration;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -32,7 +32,7 @@ public class LocalReportingValidation {
    * @return emailBody as string
    */
   private String EmailBody(Configuration config) {
-    SysUtils utils = new SysUtils();
+    SysUtil utils = new SysUtil();
     JSONArray resultObjects = utils.ReadJsonFile(TESTS_RESULTS_JSON_FILE);
     passed = 0;
     failed = 0;

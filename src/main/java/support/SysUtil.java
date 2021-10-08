@@ -9,7 +9,9 @@ import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
@@ -27,6 +29,7 @@ import java.util.regex.Pattern;
 import config.Configuration;
 
 import static support.ConstantData.*;
+import static support.CustomAssertion.getAssertMessages;
 import static support.Enumerations.Versions.NO_VERSION;
 import testStep.JamaSteps;
 
@@ -220,12 +223,107 @@ public class SysUtil {
     }
 
     /**
+     * Updated the component name in order to capitalize the first letter of each word, i.e.  session_mamagement = Session Management
+     *
+     * @param name
+     * @return component name properly capitalized
+     */
+    public static String CapitalizedComponentName(String name) {
+        String[] stringArray = name.split("_");
+        StringBuilder componentName = new StringBuilder();
+        for (int i = 0; i < stringArray.length; i++) {
+            componentName.append(CapitalizedStandardName(stringArray[i])).append(" ");
+        }
+        return componentName.substring(0, componentName.length() - 1);
+    }
+
+    public JSONArray ReadJsonFile(String jsonFile) {
+        JSONParser parser = new JSONParser();
+        JSONArray results = null;
+        try {
+            results = (JSONArray) parser.parse(new FileReader(jsonFile));
+        } catch (IOException | org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        return results;
+    }
+
+    /**
+     * Updated the name in order to match with caps requirement from POST enrollments. i.e. JONATHAN = Jonathan
+     *
+     * @param name
+     * @return
+     */
+    public static String CapitalizedStandardName(String name) {
+        String[] stringArray = name.split("");
+        StringBuilder nameBuilder = new StringBuilder();
+        for (int i = 0; i < stringArray.length; i++) {
+            if (i == 0) {
+                nameBuilder.append(stringArray[i].toUpperCase());
+            } else {
+                nameBuilder.append(stringArray[i].toLowerCase());
+            }
+        }
+        name = nameBuilder.toString();
+        return name;
+    }
+
+    /**
+     * Implements the quicksort sorting algorithm in order to sort a String array
+     * @param lowerIndex    Beginning index, most of the times should be 0 but may vary
+     * @param higherIndex   Top higest index avaliable most of the times it should be the arraySize -1
+     */
+    private void quickSort(int lowerIndex, int higherIndex, String contentToBeSorted[]) {
+        int i = lowerIndex;
+        int j = higherIndex;
+        String pivot = contentToBeSorted[lowerIndex + (higherIndex - lowerIndex) / 2];
+        while (i <= j) {
+            while (contentToBeSorted[i].compareToIgnoreCase(pivot) < 0)
+                i++;
+            while (contentToBeSorted[j].compareToIgnoreCase(pivot) > 0)
+                j--;
+
+            if (i <= j) {
+                exchangeNames(i, j, contentToBeSorted);
+                i++;
+                j--;
+            }
+        }
+        if (lowerIndex < j)
+            quickSort(lowerIndex, j, contentToBeSorted);
+        if (i < higherIndex)
+            quickSort(i, higherIndex, contentToBeSorted);
+    }
+
+    /**
+     * Needed method for changing the place of the elements inside the array
+     * @param i Initial Index here the element would be moved from
+     * @param j Final Index where the element is going to be moved
+     */
+    private void exchangeNames(int i, int j, String contentToBeSorted[]) {
+        String temp = contentToBeSorted[i];
+        contentToBeSorted[i] = contentToBeSorted[j];
+        contentToBeSorted[j] = temp;
+    }
+
+    /**
      * Sorts an array in Descending order
      * @param arrayToSort Array to sort
      */
     public void sortDescending(String arrayToSort[]) {
         sortAscending(arrayToSort);
         invertOrderToDescending(arrayToSort);
+    }
+
+    /**
+     * Inverts the order of an array
+     */
+    private void invertOrderToDescending(String contentToBeSorted[]) {
+        for (int i = 0; i < contentToBeSorted.length / 2; i++) {
+            String temp = contentToBeSorted[i];
+            contentToBeSorted[i] = contentToBeSorted[contentToBeSorted.length - 1 - i];
+            contentToBeSorted[contentToBeSorted.length - 1 - i] = temp;
+        }
     }
 
     /**
@@ -456,6 +554,15 @@ public class SysUtil {
         } catch (Exception e1) {
             e1.printStackTrace();
         }
+    }
+
+    public String Expectations() {
+        StringBuilder assertionString = new StringBuilder();
+        List assertions = getAssertMessages();
+        for (Object assertion : assertions) {
+            assertionString.append(String.valueOf(assertion)).append("<BR/><BR/>");
+        }
+        return assertionString.toString();
     }
 
     /**

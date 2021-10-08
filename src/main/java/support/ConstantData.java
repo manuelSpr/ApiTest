@@ -190,4 +190,39 @@ public class ConstantData {
     public static final String ERROR_JSONNODE = "Error";
     public static final String FAIL_RESULT = "Fail";
     public static final String PASS_RESULT = "Pass";
+
+    /**
+     * Percentage decimals
+     */
+    public static final String PERCENTAGE_DECIMALS = "%.2f";
+
+    /**
+     * RegEx in order to get the component of the test case
+     */
+    public static final String ID_VERIFICATION_PLAN = "_sdzmds_";
+    public static final String V15_COMPONENT_NAME_REGEX = "([a-z]*(_[a-z]*)?)";
+    public static final String V15_REQUIREMENT_REGEX = "_[a-zA-Z]*_.*";
+    public static final String V15_COMPLETE_TC_NAME_REGEX = V15_COMPONENT_NAME_REGEX + V15_REQUIREMENT_REGEX;
+
+    /**
+     * Resources
+     */
+    public static final String LOGOUT_RESOURCE = "/logout";
+
+    //region Itextcontext constants
+    /**
+     * Itextcontext var names
+     */
+    public static final String DESCRIPTION_VALUE = "description";
+
+    public static final String STEP_DATABASE_SERVICE = "DataBase Service";
+    public static final String STEP_DATABASE_QUERY = "DataBase Query";
+    public static final String STEP_DATABASE_RESULT = "DataBase Result";
+    public static final String COLUMN_PARAMETER = "columnParameter";
+    public static final String TABLE_PARAMETER = "tableParameter";
+    public static final String SEARCH_PARAMETER = "searchParameter";
+    public static final String DATABASE_NAME = "dataBaseName";
+    public static final String DB_PORT = "dataBasePort";
+    public static final String DB_QUERY = "dataquery";
+    public static final String DB_SERVERNAME = "ServerName";
 }

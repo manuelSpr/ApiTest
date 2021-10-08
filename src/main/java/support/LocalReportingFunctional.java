@@ -1,9 +1,9 @@
 package support;
 
-import objects.Configuration;
+import support.Configuration;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import test.java.testSteps.JamaSteps;
+import testStep.JamaSteps;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -21,8 +21,8 @@ import static support.ConstantData.QUERY_DESCRIPTION;
 import static support.ConstantData.SEARCH_PARAMETER_DESCRIPTION;
 import static support.Enumerations.Versions.*;
 
-import static support.SysUtils.CapitalizedComponentName;
-import static support.SysUtils.getConfiguration;
+import static support.SysUtil.CapitalizedComponentName;
+import static support.SysUtil.getConfiguration;
 
 public class LocalReportingFunctional {
 
@@ -222,7 +222,7 @@ public class LocalReportingFunctional {
    */
   private void SortJamaVersions(){
     //sort result objects into version numbers
-    SysUtils utils = new SysUtils();
+    SysUtil utils = new SysUtil();
     JSONArray stepsObjects = utils.ReadJsonFile(TESTS_RESULTS_JSON_FILE_STEPS);
     int stepNumber = 0;
 
@@ -347,7 +347,7 @@ public class LocalReportingFunctional {
    * @return emailBody as string
    */
   private String EmailBody(Configuration config) {
-    SysUtils utils = new SysUtils();
+    SysUtil utils = new SysUtil();
 
     resultObjects = utils.ReadJsonFile(TESTS_RESULTS_JSON_FILE);
     FillListsComponentsTestCases();
